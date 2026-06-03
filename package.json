@@ -7,7 +7,8 @@
     "start": "ts-node src/liquidation-bot.ts",
     "build": "tsc",
     "test": "npm run build && node dist/run-tests.js",
-    "simulate": "npm run build && node dist/run-simulated.js"
+    "simulate": "npm run build && node dist/run-simulated.js",
+    "eth-liquidator": "ts-node src/eth-liquidator.ts"
   },
   "dependencies": {
     "@solana/web3.js": "^1.90.0",
