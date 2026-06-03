@@ -1,0 +1,24 @@
+[package]
+name = "solana-liquidator"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+
+[programs.devnet]
+solana-liquidator = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+
+[dependencies]
+anchor-lang = { version = "0.29.0", features = [] }
+anchor-spl = { version = "0.29.0", features = [] }
+
+[dev_dependencies]
+anchor-test = { version = "0.29.0", features = [] }
+solana-program-test = { version = "1.14.11", features = [] }
+solana-sdk = { version = "1.14.11", features = [] }
+
+[test]
+# Rust test options
