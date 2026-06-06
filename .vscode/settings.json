@@ -1,0 +1,4 @@
+{
+    "chat.utilityModel": "openrouter/anthropic/claude-opus-4.8",
+    "chat.utilitySmallModel": "openrouter/anthropic/claude-opus-4.8"
+}
