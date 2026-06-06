@@ -8,16 +8,24 @@
     "build": "tsc",
     "test": "npm run build && node dist/run-tests.js",
     "simulate": "npm run build && node dist/run-simulated.js",
-    "eth-liquidator": "ts-node src/eth-liquidator.ts"
+    "eth-liquidator": "ts-node src/eth-liquidator.ts",
+    "deploy:eth:sepolia": "npx hardhat run scripts/deploy.js --network sepolia",
+    "deploy:eth:mainnet": "npx hardhat run scripts/deploy.js --network mainnet",
+    "deploy:solana:devnet": "anchor deploy --provider.cluster devnet",
+    "deploy:solana:testnet": "anchor deploy --provider.cluster testnet",
+    "deploy:solana:mainnet": "anchor deploy --provider.cluster mainnet"
   },
   "dependencies": {
     "@solana/web3.js": "^1.90.0",
     "dotenv": "^16.1.4",
     "node-fetch": "^3.3.1",
     "ethers": "^5.7.2",
-    "@flashbots/ethers-provider-bundle": "^0.3.2"
+    "@flashbots/ethers-provider-bundle": "^0.3.2",
+    "@solendprotocol/solend-sdk": "^0.14.27"
   },
   "devDependencies": {
+    "hardhat": "^2.18.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
     "ts-node": "^10.9.1",
     "typescript": "^5.5.4"
   }

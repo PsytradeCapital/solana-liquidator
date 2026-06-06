@@ -81,17 +81,12 @@ export function calculateNetProfitUsd(position: PositionInfo, quote: JupiterQuot
 }
 
 function loadWalletKeypair(keyPath: string): Keypair {
-  if (fs.existsSync(keyPath)) {
-    const secretKey = JSON.parse(fs.readFileSync(keyPath, 'utf8')) as number[];
-    return Keypair.fromSecretKey(Uint8Array.from(secretKey));
+  if (!fs.existsSync(keyPath)) {
+    throw new Error(`Wallet key file not found: ${keyPath}. Create the file from a Solana secret key array and set SOLANA_WALLET_PATH in .env.`);
   }
 
-  if (process.env.ALLOW_EPHEMERAL_WALLET === 'true') {
-    console.warn('Wallet key file not found. Using an ephemeral wallet for simulation.');
-    return Keypair.generate();
-  }
-
-  throw new Error(`Wallet key file not found: ${keyPath}`);
+  const secretKey = JSON.parse(fs.readFileSync(keyPath, 'utf8')) as number[];
+  return Keypair.fromSecretKey(Uint8Array.from(secretKey));
 }
 
 export class SolanaLiquidationSearcher {

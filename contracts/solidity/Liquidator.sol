@@ -188,6 +188,11 @@ contract Liquidator is IFlashLoanSimpleReceiver {
 
         if (builderFee > 0) _payBuilder(builderFee, debtAsset);
 
+        // Final explicit validation: Ensure contract has enough balance to repay flash loan
+        uint256 finalBalance = IERC20(debtAsset).balanceOf(address(this));
+        uint256 flashLoanCost = _add(amount, premium);
+        if (finalBalance < flashLoanCost) revert InsufficientProfit(finalBalance, flashLoanCost);
+
         emit FlashLoanExecuted(amount, premium, netProfit, builderFee);
         return true;
     }
